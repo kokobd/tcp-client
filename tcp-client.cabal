@@ -16,6 +16,8 @@ extra-source-files:  README.md
 executable tcp-client
   hs-source-dirs:      src
   main-is:             Main.hs
+  other-modules:
+      Zelinf.TcpClient.Option
   default-language:    Haskell2010
   build-depends:
       base >= 4.7 && < 5
@@ -23,3 +25,4 @@ executable tcp-client
     , bytestring
     , text
     , optparse-applicative
+    , transformers
