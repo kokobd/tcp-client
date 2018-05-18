@@ -25,7 +25,8 @@ main = do
 
   connect sock (SockAddrInet (fromIntegral $ serverPort options) hostIP)
 
-  sendAll sock (convertToCRLF input)
+  let (input' :: ByteString) = if crlf options then convertToCRLF input else input
+  sendAll sock input'
   response <- recvAll sock
 
   shutdown sock ShutdownBoth

@@ -12,6 +12,7 @@ import           Options.Applicative
 data Option = Option
   { serverIP   :: Text
   , serverPort :: Word16
+  , crlf       :: Bool
   }
 
 optionParser :: Parser Option
@@ -23,7 +24,11 @@ optionParser = Option
         )
       )
   <*> option auto
-      (long "port"
+      ( long "port"
      <> metavar "PORT"
      <> help "Port number of the server to connect"
+      )
+  <*> switch
+      ( long "crlf"
+     <> help "Convert all \\n to \\r\\n"
       )
