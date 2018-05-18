@@ -1,0 +1,17 @@
+image: Visual Studio 2017
+
+build: off
+
+before_test:
+- set PATH=C:\Program Files\Git\mingw64\bin;%PATH%
+- curl -sS -ostack.zip -L --insecure http://www.stackage.org/stack/windows-x86_64
+- 7z x stack.zip stack.exe
+
+clone_folder: "C:\\stack"
+environment:
+  global:
+    STACK_ROOT: "C:\\sr"
+
+test_script:
+- stack setup > nul
+- echo "" | stack --no-terminal build
